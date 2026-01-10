@@ -31,7 +31,7 @@ function handleButtonClick() {
             }
         } else {
             // Если фраза не последняя — увеличиваем шрифт (например, на 10 пикселей)
-            currentFontSize += 10;
+            currentFontSize += 7;
             changingText.style.fontSize = currentFontSize + "px";
         }
 
