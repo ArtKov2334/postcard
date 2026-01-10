@@ -14,11 +14,22 @@ body {
 /* Контейнер для контента */
 #main-container {
     background: white;
-    padding: 40px;
+    padding: 20px; /* Уменьшили отступы для мобилок */
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Мягкая тень */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     max-width: 500px;
-    width: 90%;
+    width: 85%; /* Оставляем зазоры по бокам */
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+    overflow: hidden; /* Чтобы текст не вылезал за границы карточки */
+}
+
+h2#changing-text {
+    color: #555;
+    word-wrap: break-word; /* Позволяет переносить длинные слова */
+    overflow-wrap: break-word;
+    hyphens: auto; /* Добавляет переносы, если нужно */
+    line-height: 1.2;
+    margin: 20px 0;
 }
 
 /* Стили заголовков */
