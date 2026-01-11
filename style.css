@@ -5,15 +5,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Растягиваем на всю высоту экрана */
-    background-color: #f0f2f5; /* Светло-серый фон */
+    min-height: 100vh;
+    
+    /* Установка фоновой картинки */
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Растягивает фото на весь экран без искажений */
+    background-attachment: fixed; /* Фон не прокручивается при скролле */
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    overflow-x: hidden; /* Защита от горизонтальной прокрутки */
 }
 
 /* Контейнер для контента */
 #main-container {
-    background: white;
+    background: rgb(255, 214, 214);
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -76,13 +84,13 @@ h2 {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    background-color: #007bff;
+    background-color: #ff0055;
     color: white;
     transition: all 0.2s ease; /* Плавный эффект при наведении */
 }
 
 .action-button:hover {
-    background-color: #0056b3;
+    background-color: #ff0055;
     transform: translateY(-2px); /* Кнопка чуть подпрыгивает */
 }
 
@@ -103,20 +111,41 @@ h2 {
 
 /* Стили самого листка */
 .letter {
-    background: #fffef0; /* Цвет старой бумаги */
+    /* Слой 1: легкая текстура шума и пятен через градиенты */
+    background: 
+        radial-gradient(circle at 70% 30%, rgba(0,0,0,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, rgba(210,180,140,0.1) 0%, transparent 40%),
+        linear-gradient(135deg, #fffaba 0%, #f6e69d 100%);
+    
     padding: 30px;
-    border: 1px solid #e0ddd0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    /* Делаем границу чуть более мягкой */
+    border: 1px solid #dcd39e;
+    
+    /* Добавляем "эффект неровных краев" через небольшое искажение */
+    border-radius: 2px 3px 5px 2px;
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     max-width: 400px;
+    width: 85%; /* Чтобы на мобилках не прилипало к краям */
     margin: 0 auto;
     position: relative;
-    font-family: 'Georgia', serif; /* Шрифт как в письмах */
+    font-family: 'Georgia', serif;
     line-height: 1.6;
     color: #444;
     
-    /* Анимация появления */
+    /* Анимация (оставляем твою) */
     animation: dropLetter 1.2s ease-out forwards;
-    transform: translateY(-100vh) rotate(-5deg); /* Начало: выше экрана и чуть под углом */
+    transform: translateY(-100vh) rotate(-5deg);
+}
+
+/* Эффект помятых краев через псевдоэлемент */
+.letter::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.03));
+    box-shadow: inset 0 0 15px rgba(255,255,255,0.5);
 }
 
 /* Ключевые кадры для падения */
